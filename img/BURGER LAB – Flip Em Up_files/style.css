@@ -1,0 +1,200 @@
+/*
+Theme Name: Burger Lab
+Theme URI: https://innovationalmedia.com
+Author: Muffin group
+Author URI: https://innovationalmedia.com
+Description: r
+License: Themeforest Split Licence
+License URI: 
+Text Domain: Burgerlab
+Version: 21.1.3
+
+All css files are placed in /css/ folder
+*/
+/*
+.tr-menu .wppizza-tax-total{
+    display: none;
+}*/
+.menu .wppizza-entry-title {
+    text-align: left;
+    color: #6f0c1b;
+    font-size: 44px;
+    letter-spacing: 1px;
+    line-height: 38px;
+    padding-left: 20px;
+    font-weight: 900;
+    margin-bottom: .5em !important;
+    border-bottom: 2px solid #6f0c1b;
+    margin-top: .5em !important;
+    background: none;
+}
+
+aside#wppizza_widgets-3 {
+    box-shadow: 0 2px 28px 0 rgba(0,0,0,0.12);
+    padding: 20px;
+        height: 100vh;
+}
+#Subheader{background-size: cover;}
+aside#wppizza_widgets-3 h3 {
+     color: #6f0c1b;
+    font-size: 34px;
+    line-height: 38px;
+    font-weight: 900;
+    border-bottom: 2px solid #6f0c1b;
+/*    margin-top: .65em !important;     */
+}
+.wppizza-opening-hours {
+    line-height: 1.4;
+}
+
+.menu .wppizza-article-default:hover {
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+    z-index: 1;
+}
+
+.menu .wppizza-article-default {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+    padding: 15px 10px !important;
+    margin: 0 auto 10px auto !important;
+    display: -ms-flexbox;
+    background: #ffffff5e;
+    position: relative;
+    transition: all 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+.menu .wppizza-article-default h2.wppizza-article-h2 {
+    display: block;
+    width: 68%;
+    margin: 0;
+    line-height: .5;
+    margin-top: 10px;
+}
+
+.menu .wppizza-article-title {
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #6f0c1b;
+    font-family: "Cabin Sketch", Arial, Tahoma, sans-serif;
+}
+
+.menu .wppizza-article-default .wppizza-article-content {
+    display: block;
+    width: 68%;
+    line-height: 1.3;
+}
+.menu .wppizza-article-default .wppizza-article-image .wppizza-article-image-thumb {
+        max-width: 100px !important;
+}
+
+.menu .wppizza-article-default .wppizza-article-prices>ul>li {
+    float: none;
+    display: block;
+    border-bottom: 1px solid #909090;
+    margin-top: 10px !important;
+    padding-bottom: 5px;
+    text-align: right;
+}
+
+.menu .wppizza-article-default .wppizza-article-prices>ul>li:last-child {
+    border-bottom: 0;
+}
+ul#wppizza-categories-1 {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+    overflow-y: auto;
+    white-space: nowrap;
+        background: #fff;
+    z-index: 999;
+        width: 100%;
+}
+
+ul#wppizza-categories-1 li {
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 0 5px;
+    background: #ffffff5e;
+    transition: all 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+
+#Top_bar .menu > li > a span {
+    padding: 0 10px !important;
+}
+
+.header-split #Header .top_bar_left .logo {
+    position: absolute;
+    left: 42%;
+    width: 20%;
+}
+
+.header-split #Header .top_bar_left .menu_right,
+.header-split #Header .top_bar_left .menu_left { 
+    width: 41%!important;
+}
+
+ul#wppizza-categories-1 li:hover {
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+}
+
+ul#wppizza-categories-1 li a {
+    color: #888;
+    font-size: 14px;
+}
+
+
+@media only screen and (min-width: 768px) { 
+.admin-bar .sticky {
+
+  top: 91px;
+}
+
+.sticky {
+  position: fixed;
+  top: 59px;
+}
+
+.admin-bar #sidebar.sticky {
+  top: 150px;  
+}
+
+#sidebar.sticky {
+	top: 118px;	
+}
+}
+
+@media only screen and (max-width: 768px) {
+ .menu .wppizza-article-default h2.wppizza-article-h2, 
+    .menu .wppizza-article-default .wppizza-article-content {
+        width: 100%;
+    } 
+	
+.mobile-header-mini.header-split #Top_bar .top_bar_left .logo {
+    left: 38%;
+    z-index: 999;
+	}
+	.menu .wppizza-article-default h2.wppizza-article-h2 {
+		    margin-top: 0px;
+	}
+	.menu .wppizza-article-title {
+    font-size: 18px;
+    line-height: 18px;
+	}
+	.wppizza-article-default .wppizza-article-sizes {
+		    text-align: right;
+	}
+	.mobile-sticky #Top_bar.is-sticky {
+    background: #fff !important;
+    width: 100%;
+    height: 68px;
+    box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+}
+}
+tr.wppizza-tax-total {
+    display: none !important;
+}

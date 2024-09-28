@@ -1,0 +1,565 @@
+var wppizzaCartCommentToggle = function() {};
+jQuery(document).ready(function(i) {
+    for (var e = wppizza_addingredients.ing, t = wppizza_addingredients.tb, n = 0; n < e.length; n++) {
+        var a = e[n],
+            p = i("#wppizza-article-prices-" + a + " .wppizza-add-to-cart");
+        p.removeClass("wppizza-add-to-cart").addClass("wppizza-add-ingredients"), 1 == t.tb && p.addClass("thickbox");
+        var r = i("#wppizza-add-to-cart-btn-" + a + " .wppizza-add-to-cart-btn"),
+            s = i("#wppizza-add-to-cart-size-" + a),
+            d = !1;
+        s.length > 0 && (d = !0), d ? (s.removeClass("wppizza-add-to-cart-size").addClass("wppizza-add-to-cart-size-ingredients"), r.next().removeClass("wppizza-add-to-cart").addClass("wppizza-add-ingredients wppizza-add-ingredients-btn")) : r.removeClass("wppizza-add-to-cart").addClass("wppizza-add-ingredients wppizza-add-ingredients-btn")
+    }
+    i(document).on("change", ".wppizza-add-to-cart-size-ingredients", function(e) {
+        i(".wppizza-ingredients").length > 0 && i(".wppizza-ingredients").empty().remove();
+        var t = i(this),
+            n = t.val();
+        t.closest("span").find(".wppizza-add-ingredients").prop("id", "wppizza-" + n)
+    });
+    var o, z = function(e, t, n) {
+            if (!e) var e = i("#TB_window>#wppizza-ai-detect").outerWidth(!0);
+            i("#TB_title").css({
+                width: e + "px"
+            }), n && i("#TB_window>#wppizza-ai-cover").css({
+                "margin-top": t - 5 + "px",
+                width: e + "px",
+                height: "5px"
+            }).fadeIn("fast")
+        },
+        l = function(e, n, a, p, r, s) {
+            if (a) {
+                var d = Math.round(n.h / 2) + 15;
+                return i("#TB_window").addClass("wppizza-add-ingredients-tbw"), i("#TB_ajaxWindowTitle").addClass("wppizza-add-ingredients-tbttl"), i("#TB_ajaxContent").addClass("wppizza-add-ingredients-tbc"), i("#TB_window").css({
+                    "margin-top": "-" + d + "px"
+                }), i("#TB_window").append("<div id='wppizza-ai-detect'></div>"), void i("#TB_window").prepend("<div id='wppizza-ai-cover'></div>")
+            }
+            var o = i("#TB_window").width(),
+                l = i("#TB_window>#TB_title").outerHeight(!0),
+                w = i("#TB_window>#TB_ajaxContent>div").outerHeight(!0),
+                c = l + w,
+                g = i("#wppizza-ingr-form").width(),
+                h = g - 0,
+                v = 0;
+            1 == e && i("#TB_window .wppizza-current-ingredients-sticky").length > 0 && (i("#TB_window .wppizza-current-ingredients-sticky").css({
+                margin: "-" + l / 2 + "px 0 0 0",
+                width: h + "px"
+            }), v = i("#TB_window .wppizza-current-ingredients-sticky").outerHeight(!0), i("#TB_window .wppizza-current-ingredients-sticky-wrap").css({
+                height: v + "px",
+                width: h + "px"
+            })), null === n && ((n = {}).bh = i(window).height() - 60);
+            var u = c + v;
+            if (s) {
+                var m = b();
+                i("#TB_window").css({
+                    width: m.w + "px",
+                    "margin-left": "-" + Math.round(m.w / 2) + "px"
+                }), i("#TB_title").css({
+                    width: m.w + "px"
+                }), i("#TB_ajaxContent").css({
+                    width: m.w - 30 + "px"
+                }), 1 == e && (h = (g = i("#wppizza-ingr-form").width()) - 0, i("#TB_window .wppizza-current-ingredients-sticky").css({
+                    width: h + "px"
+                }), i("#TB_window .wppizza-current-ingredients-sticky-wrap").css({
+                    width: h + "px"
+                }))
+            }
+            if (i("#TB_window>#wppizza-ai-cover").css({
+                    display: "none"
+                }), !p || 1 != e) return 1 == e ? (n.bh > c + v && i("#TB_window").animate({
+                height: c + v,
+                marginTop: "-" + Math.round((c + v) / 2) + "px"
+            }, t.tbanim, function() {
+                i("#TB_window").css({
+                    overflow: "hidden",
+                    "overflow-y": "auto"
+                }), i("#TB_window>#TB_title").css({
+                    margin: "0",
+                    position: "fixed",
+                    "z-index": "1"
+                }), i("#TB_window>#TB_ajaxContent").css({
+                    height: w + v + "px",
+                    "margin-top": l + "px"
+                }), z(o, u, !1)
+            }), void(n.bh <= c + v && i("#TB_window").animate({
+                height: n.bh,
+                marginTop: "-" + Math.round(n.bh / 2) + "px"
+            }, t.tbanim, function() {
+                i("#TB_window").css({
+                    overflow: "hidden",
+                    "overflow-y": "auto"
+                }), i("#TB_window>#TB_title").css({
+                    margin: "0",
+                    position: "fixed",
+                    "z-index": "1"
+                }), i("#TB_window>#TB_ajaxContent").css({
+                    height: w + v + "px",
+                    "margin-top": l + "px"
+                }), z(!1, n.bh, !0)
+            }))) : void(1 != e && (n.bh > c && (i("#TB_window>#TB_ajaxContent").css({
+                height: c - l + "px"
+            }), i("#TB_window").animate({
+                height: c,
+                marginTop: "-" + Math.round(c / 2) + "px"
+            }, t.tbanim, function() {
+                i("#TB_window").css({
+                    overflow: "hidden",
+                    "overflow-y": "auto"
+                }), z(o, u, !1)
+            })), n.bh <= c && (i("#TB_window>#TB_ajaxContent").css({
+                height: c - l + "px"
+            }), i("#TB_window").animate({
+                height: n.bh,
+                marginTop: "-" + Math.round(n.bh / 2) + "px"
+            }, t.tbanim, function() {
+                i("#TB_window").css({
+                    overflow: "hidden",
+                    "overflow-y": "auto"
+                }), z(!1, n.bh, !0)
+            }))));
+            n.bh > c + v ? (i("#TB_window>#TB_ajaxContent").css({
+                height: w + v + "px",
+                "margin-top": l + "px"
+            }), i("#TB_window").animate({
+                height: c + v,
+                marginTop: "-" + Math.round((c + v) / 2) + "px"
+            }, t.tbanim, function() {
+                z(o, u, !1)
+            })) : (i("#TB_window>#TB_ajaxContent").css({
+                height: w + v + "px",
+                "margin-top": l + "px"
+            }), i("#TB_window").animate({
+                height: n.bh,
+                marginTop: "-" + Math.round(n.bh / 2) + "px"
+            }, t.tbanim, function() {
+                z(!1, n.bh, !0)
+            }))
+        },
+        w = function(e, t, n, a, p) {
+            var r = !0,
+                s = 1;
+            if ("checkmin" == e && (s = 0), 1 == a) {
+                var d = i("#wppizza-selected-ingredients-0").val();
+                if (void 0 !== d && "" != d)
+                    for (var o = d.split(","), z = o.length, l = 0; l < z; l++) {
+                        u = o[l].split(":");
+                        s += parseInt(u[1])
+                    }
+                if ("" == (h = i("#wppizza-selected-ingredients-" + p).val())) return r;
+                for (var w = (v = h.split(",")).length, l = 0; l < w; l++) {
+                    u = v[l].split(":");
+                    s += parseInt(u[1])
+                }
+                if ("checkmax" == e && s > n) r = !1;
+                if ("checkmin" == e && s < t) r = !1
+            }
+            if (0 == a) {
+                for (var c = i("#wppizza-ingr-multitype").val(), g = 0; g <= c; g++) {
+                    var h = i("#wppizza-selected-ingredients-" + g).val();
+                    if (void 0 !== h && "" != h)
+                        for (var v = h.split(","), w = v.length, l = 0; l < w; l++) {
+                            var u = v[l].split(":");
+                            s += parseInt(u[1])
+                        }
+                }
+                if ("checkmax" == e && s > n) r = !1;
+                if ("checkmin" == e && s < t) r = !1
+            }
+            if ("checkmax" == e && !r) {
+                if (0 == a || 1 == multiType) m = wppizza.extend.wppizzaAddIngr.msg.glbMaxIng;
+                if (1 == a) m = wppizza.extend.wppizzaAddIngr.msg.glbMaxIngPP;
+                alert(m.replace(/%s/g, n))
+            }
+            if ("checkmin" == e && !r) {
+                if (0 == a || 1 == multiType) m = wppizza.extend.wppizzaAddIngr.msg.glbMinIng;
+                if (1 == a) var m = wppizza.extend.wppizzaAddIngr.msg.glbMinIngPP;
+                alert(m.replace(/%s/g, t))
+            }
+            return r
+        },
+        c = function(e, t, a) {
+            var p = !0,
+                r = i("#wppizza-ingredients-req-" + a + "-" + t + " .wppizza-ireq");
+            if (t >= 0 && r.length > 0) {
+                var s = i("#wppizza-selected-ingredients-" + a).val(),
+                    d = r.val().split("|"),
+                    o = d[0],
+                    z = d[1],
+                    l = d[2],
+                    w = d[4],
+                    c = v(s),
+                    g = c.obj[e],
+                    h = c.ing;
+                if (l > 0 && g >= l) return alert(wppizza.extend.wppizzaAddIngr.msg.maxSameIng), p = !1;
+                if (z > 0 || w > 0) {
+                    var u = i.parseJSON("[" + o + "]"),
+                        m = u.length;
+                    if (w > 0) {
+                        var f = 0;
+                        for (n = 0; n < m; n++) void 0 !== c.obj[u[n]] && (f += +c.obj[u[n]]);
+                        if (w > 0 && f >= w) return alert(wppizza.extend.wppizzaAddIngr.msg.maxIng), p = !1
+                    }
+                    if (z > 0 && -1 == i.inArray(e, h)) {
+                        var b = 0;
+                        for (n = 0; n < m; n++) {
+                            var y = u[n].toString();
+                            if (-1 != i.inArray(y, h) && ++b >= z) return alert(wppizza.extend.wppizzaAddIngr.msg.maxIng), p = !1
+                        }
+                    }
+                }
+            }
+            return p
+        },
+        g = function(e) {
+            return i("#wppizza-selected-ingredients-" + e).val()
+        },
+        h = function() {
+            var e = !0,
+                t = i(".wppizza-ireq"),
+                n = 0,
+                a = "";
+            return i(".wppizza-list-ingredients>ul").removeClass(), t.length > 0 && t.each(function(e, t) {
+                for (var p = i(this), r = p.val().split("|"), s = p.attr("id").split("-"), d = (s[2], s[3]), o = s[4], z = i.parseJSON("[" + r[0] + "]"), l = g(d), w = v(l), c = 0, h = 0, u = 0; u < z.length; u++) {
+                    l = z[u].toString(); - 1 != i.inArray(l, w.ing) && (c++, h += +w.obj[l])
+                }!1 === !(c < r[3] || h < r[5]) && (i("#wppizza-ingredients-req-" + d + "-" + o + ">ul").addClass("wppizza-list-ingredients-hilight"), i("#wppizza-ingrmulti-" + d).addClass("wppizza-multi-tab-hilight"), a = d, n += 1)
+            }), n > 0 && (alert(wppizza.extend.wppizzaAddIngr.msg.error), e = !1), e
+        },
+        v = function(e) {
+            for (var t = e.split(","), n = t.length, a = {}, p = {}, r = 0; r < n; r++)
+                if ("" !== t[r]) {
+                    var s = t[r].split(":");
+                    a[s[0]] = s[1], p[s[0]] = s[1]
+                }
+            var d = i.map(a, function(i, e) {
+                    return e
+                }),
+                o = {};
+            return o.ing = d, o.obj = p, o
+        },
+        u = function(i) {
+            var e = 130;
+            return i.dp > 1024 && i.dppx <= 1 && (e = 100), i.dp < 1024 && i.dppx >= 2 && (e = 160), e
+        },
+        m = function(i) {
+            var e = "square";
+            return i.h > 1.2 * i.w && (e = "portrait"), i.w > 1.2 * i.h && (e = "landscape"), e
+        },
+        f = function(i) {
+            var e = "desktop";
+            return i.dppx > 1 && i.dppx < 2 && (e = "tablet"), i.dppx >= 2 && (e = "mobile"), e
+        },
+        b = function() {
+            var e = {};
+            e.w = i(window).width(), e.h = i(window).height() - 60, e.dp = Math.round(10 * Math.sqrt(e.w * e.w + e.h * e.h)) / 10, e.dppx = void 0 !== window.devicePixelRatio ? window.devicePixelRatio : 1, e.ppi = u(e), e.di = Math.round(e.dp / e.ppi * 10) / 10, e.orientation = m(e), e.device = e.dp >= 1024 && e.dppx <= 1 ? "desktop" : "handheld", e.innerWidth = window.innerWidth > 0 ? window.innerWidth : screen.width, e.size = e.innerWidth > 660 ? "normal" : "small", e.deviceType = f(e);
+            var n = {};
+            return n.bh = e.h, n.bw = e.w, n.userPercent = t.tbw / 100, "desktop" == e.deviceType && (n.w = 600 * n.userPercent), "tablet" == e.deviceType && (n.w = Math.round(e.innerWidth / 2 * n.userPercent)), "mobile" != e.deviceType && "small" != e.size || (n.w = (e.innerWidth - 60) * n.userPercent), "mobile" != e.deviceType && "small" != e.size || (n.mobile = 1), "portrait" == e.orientation || "square" == e.orientation ? n.h = n.w : e.h - 60 >= n.w ? n.h = n.w : n.h = e.h - 60, n
+        };
+    i(window).resize(function(e) {
+        0 !== i(".wppizza-add-ingredients-tbw").length && (clearTimeout(o), o = setTimeout(function() {
+            l(t.tbstky, null, !1, !0, 0, !0)
+        }, 300))
+    });
+    var y = function() {
+        var e = i("#wppizza-diy-quantity");
+        void 0 !== e.spinner && (e.spinner({
+            min: 1
+        }), e.focus(function(e) {
+            return e.preventDefault(), i(this).on("DOMMouseScroll mousewheel", function(i) {
+                return i.originalEvent.detail > 0 || i.originalEvent.wheelDelta < 0 ? parseInt(this.value) > 1 && (this.value = parseInt(this.value, 10) - 1) : this.value = parseInt(this.value, 10) + 1, !1
+            }), !1
+        }), e.keydown(function(e) {
+            if (spinner_update_value = i(this).val(), 13 == e.which || 35 == e.which) return i(this).val() < 1 && i(this).val(1), i(".wppizza-diy-to-cart").trigger("click"), e.preventDefault(), !1
+        }), e.blur(function(e) {
+            return i(this).val() < 1 && i(this).val(1), !1
+        }))
+    };
+    i(document).on("click", ".wppizza-ingr-comments-toggle", function(e) {
+        e.preventDefault();
+        var t = i(this);
+        t.closest("td").find(".wppizza-ingr-comments").slideToggle("30", function() {}), t.toggleClass("wppizza-ingr-comments-toggle-sel")
+    }), i(document).on("click", "#wppizza-cart-cancel", function(e) {
+        i(".wppizza-ingredients").empty().remove(), 1 == t.tb && tb_remove()
+    }), i(document).on("click", ".wppizza-multi-button-main", function(e) {
+        var n = i(this).attr("id").split("-"),
+            a = n[2],
+            p = n[3],
+            r = n[4],
+            s = n[5],
+            d = n[6],
+            o = n[7];
+        i(".wppizza-ingredients-multi").length > 0 && i(".wppizza-ingredients-multi").empty().remove(), i(".wppizza-multiselect-main").empty().remove(), i("#wppizza-ingredients-" + r).append('<div id="wppizza-ingredients-multi-' + r + '" class="wppizza-ingredients-multi wppizza-ingredients-loading"></div>'), i("#wppizza-ingredients-multi-" + r).fadeIn(500), jQuery.post(wppizza.ajaxurl, {
+            action: "wppizza_ingredients_json",
+            vars: {
+                type: "getingredients",
+                blogId: a,
+                catId: p,
+                item: r,
+                tier: s,
+                size: d,
+                multi: o
+            }
+        }, function(e) {
+            i("#wppizza-ingredients-multi-" + r).removeClass("wppizza-ingredients-loading"), i("#wppizza-ingredients-multi-" + r).html(e.body), 1 == t.tb && (void 0 !== e.restrictions_info && i(".wppizza-add-ingredients-tbttl").append(e.restrictions_info), 1 == t.tbstky && i("#TB_title").after(e.head), l(t.tbstky, null, !1, !0, 0, !1)), y()
+        }, "json").error(function(e, t, n) {
+            alert("error : " + n), console.log(e.responseText), i(".wppizza-ingredients").empty().remove()
+        })
+    }), i(document).on("click", ".wppizza-multi-tab", function(e) {
+        var t = i(this),
+            n = t.attr("id").split("-"),
+            a = i(".wppizza-multi-tab-selected");
+        i.each(a, function(e, t) {
+            var n = this.id,
+                a = n.split("-");
+            i("#" + n).removeClass("wppizza-multi-tab-selected"), i("#wppizza-imulti-" + a[2]).fadeOut(200)
+        }), t.addClass("wppizza-multi-tab-selected"), i("#wppizza-imulti-" + n[2]).fadeIn(500)
+    }), i(document).on("click", ".wppizza-add-ingredients", function(e) {
+        if (-1 != wppizza.shopOpen)
+            if (1 == wppizza.shopOpen) {
+                var n = i(this),
+                    a = n.attr("id").split("-"),
+                    p = a[1],
+                    r = a[2],
+                    s = a[3],
+                    d = a[4],
+                    o = a[5];
+                if (i(".wppizza-ingredients").length > 0 && i(".wppizza-ingredients").empty().remove(), 1 == t.tb) {
+                    i("#wppizza-addingredients-tb>div").append('<div id="wppizza-ingredients-' + s + '" class="wppizza-ingredients wppizza-ingredients-loading"></div>');
+                    var z = b();
+                    tb_show("" + t.tblbl, "#TB_inline?width=" + z.w + "&amp;height=" + z.h + "&amp;inlineId=wppizza-addingredients-tb", null), l(t.tbstky, z, !0, !1, 0, !1)
+                } else {
+                    var w = !1;
+                    n.hasClass("wppizza-add-ingredients-btn") && (w = !0), w ? n.after('<div id="wppizza-ingredients-' + s + '" class="wppizza-ingredients wppizza-ingredients-loading"></div>') : i("#post-" + s).append('<div id="wppizza-ingredients-' + s + '" class="wppizza-ingredients wppizza-ingredients-loading"></div>')
+                }
+                i(".wppizza-ingredients").fadeIn(500), jQuery.post(wppizza.ajaxurl, {
+                    action: "wppizza_ingredients_json",
+                    vars: {
+                        type: "getingredients",
+                        blogId: p,
+                        catId: r,
+                        item: s,
+                        tier: d,
+                        size: o
+                    }
+                }, function(e) {
+                    1 == t.tb ? (i("#TB_ajaxWindowTitle").prepend(e.title + " - "), i("#wppizza-ingredients-" + s).removeClass("wppizza-ingredients-loading"), i("#wppizza-ingredients-" + s).html(e.body), 1 == t.tbstky && i("#TB_title").after(e.head), l(t.tbstky, z, !1, !1, 0, !1)) : w ? (n.next().removeClass("wppizza-ingredients-loading"), n.next().html(e.body)) : (i("#post-" + s + " .wppizza-ingredients").removeClass("wppizza-ingredients-loading"), i("#post-" + s + " .wppizza-ingredients").html(e.body)), y()
+                }, "json").error(function(e, t, n) {
+                    alert("error : " + n), console.log(e.responseText), i(".wppizza-ingredients").empty().remove()
+                })
+            } else alert(wppizza.msg.closed)
+    });
+    var x = "";
+    var count = 0;
+    i(document).on("change click", ".wppizza-ingr-select", function(e) {
+        var t = i(this);
+        if ("change" == e.type) var n = t.children(":selected").attr("id");
+        if ("click" == e.type && (x = t.children(":selected").attr("id")), "" !== n && i("#" + n).trigger("click"), "" === n) {
+            var a = x.split("-"),
+                p = "wppizza-remove-ingredient-" + a[2] + "-" + a[3] + "-" + a[4] + "-" + a[5];
+            i("#" + p + ">span.wppizza-remove-ingredient").trigger("click")
+        }
+    }), i(document).on("click", ".wppizza-doingredient-lbl", function(e) {
+        i(this).prev(".wppizza-doingredient").trigger("click")
+    }), i(document).on("click", ".wppizza-doingredient, .wppizza-selingredient, .wppizza-remove-ingredient, .wppizza-ingredient-remove", function(e) {
+        
+        if (jQuery(this).hasClass('wppizza-remove-ingredient')){
+            count--;
+        }
+        if (count >= 4) {
+            alert("You have selected all 4 items");
+            return;  
+        }
+        if (!jQuery(this).hasClass('wppizza-remove-ingredient')){
+            count++;
+        }        
+
+        var n = i(this),
+            a = n.closest("fieldset");
+        if (void 0 === n.attr("disabled")) {
+            if (n.attr("disabled", "disabled"), a.append("<div class='wppizza-ingredients-disable-click'></div>"), n.closest("ul").removeClass(), i(".wppizza-multi-tab").removeClass("wppizza-multi-tab-hilight"), n.hasClass("wppizza-selingredient")) p = n.attr("id").split("-");
+            else var p = n.closest("li").attr("id").split("-");
+            var r = n.closest(".wppizza-ingredients").attr("id").split("-");
+            if (n.hasClass("wppizza-remove-ingredient")) {
+                var s = "removeingredient",
+                    d = p[3],
+                    o = p[4],
+                    z = p[5],
+                    g = "";
+                void 0 !== p[6] && i("#wppizza-ingr-select-" + p[6] + "-" + d).val("")
+            }
+            if ((n.hasClass("wppizza-doingredient") || n.hasClass("wppizza-selingredient")) && !n.hasClass("wppizza-ingredient-remove")) {
+                var s = "addingredient",
+                    d = p[2],
+                    o = p[3],
+                    z = p[4];
+                if (void 0 !== p[5]) {
+                    g = p[5];
+                    if (!1 === c(o, g, d)) return n.removeAttr("disabled", "disabled"), void a.find(".wppizza-ingredients-disable-click").remove()
+                } else g = "";
+                n.closest("li").fadeOut(200).fadeIn(200)
+            }
+            if (n.hasClass("wppizza-ingredient-remove")) {
+                var s = "removeingredient",
+                    d = p[2],
+                    o = p[3],
+                    z = p[4],
+                    g = "";
+                n.removeClass("wppizza-ingredient-remove")
+            }
+            var h = i("#wppizza-ingredients-restrictions-" + r[2]);
+            if (h.length > 0 && void 0 !== h) {
+                var v = h.val().split(":"),
+                    u = v[0],
+                    m = v[1],
+                    f = v[2];
+                if (m > 0) {
+                    var b = !0;
+                    n.hasClass("wppizza-ingr-1") && n.closest("ul").find(".wppizza-ingr-1-selected").length > 0 && (b = !1);
+                    var y = !0;
+                    if (n.hasClass("wppizza-selingredient")) {
+                        for (var x = i("#wppizza-selected-ingredients-" + d).val().split(","), T = [], _ = 0; _ < x.length; _++) {
+                            var C = x[_].split(":");
+                            T.push(C[0])
+                        }
+                        for (var k = i.map(i("#wppizza-ingr-select-" + g + "-" + d + " option"), function(i) {
+                                return i.value
+                            }), B = k.length, _ = 0; _ < B; _++) "" != k[_] && -1 !== i.inArray(k[_], T) && (y = !1)
+                    }
+                    if (!n.hasClass("wppizza-remove-ingredient") && !n.hasClass("wppizza-ingredient-remove") && !n.hasClass("wppizza-ingr-1-selected") && !n.hasClass("wppizza-remove-ingredient") && !n.hasClass("wppizza-ingr-3-selected") && b && y && !1 === w("checkmax", u, m, f, d)) return n.removeAttr("disabled", "disabled"), void a.find(".wppizza-ingredients-disable-click").remove()
+                }
+            }
+            jQuery.post(wppizza.ajaxurl, {
+                action: "wppizza_ingredients_json",
+                vars: {
+                    type: s,
+                    item: o,
+                    groupId: g,
+                    postId: r[2],
+                    multiId: d,
+                    multiType: z
+                }
+            }, function(e) {
+                var p = i("#wppizza-ingredient-count-" + d + "-" + o + "-" + z);
+                if (p.length > 0) {
+                    void 0 !== e.cssDeselect && "cssSelect" != typeof e.cssDeselect && i.each(e.cssDeselect, function(e, t) {
+                        i("#wppizza-ingredient-count-" + d + "-" + e + "-" + z).html("")
+                    });
+                    var r, s = e.selectedingredients.split(","),
+                        w = 0;
+                    i.each(s, function(i, e) {
+                        (r = e.split(":"))[0] == o && r[1] > 0 && (w = r[1])
+                    }), w > 0 ? p.html(w + "x") : p.html("")
+                }
+                i(".wppizza-current-total").html(e.total), i("#wppizza-current-ingredients-" + d).html(e.ingredients), i("#wppizza-selected-ingredients-" + d).val(e.selectedingredients), void 0 !== e.cssDefaultSelect && i("#wppizza-ingredient-" + e.cssDefaultSelect + ">.wppizza-doingredient").addClass("wppizza-ingredient-selected"), void 0 !== e.cssDefaultRestore && i("#wppizza-ingredient-" + e.cssDefaultRestore + ">.wppizza-doingredient").removeClass("wppizza-ingredient-selected"), void 0 !== e.cssDeselect && i.each(e.cssDeselect, function(e, t) {
+                    i("#wppizza-ingredient-" + d + "-" + e + "-" + z + "-" + t.groupId + ">.wppizza-doingredient").removeClass("wppizza-ingr-" + t.groupType + "-selected").addClass("wppizza-ingr-" + t.groupType)
+                }), void 0 !== e.cssSelect && i.each(e.cssSelect, function(e, t) {
+                    i("#wppizza-ingredient-" + d + "-" + e + "-" + z + "-" + t.groupId + ">.wppizza-doingredient").removeClass("wppizza-ingr-" + t.groupType).addClass("wppizza-ingr-" + t.groupType + "-selected")
+                }), void 0 !== e.cssCheckSelect && i.each(e.cssCheckSelect, function(e, t) {
+                    i("#wppizza-ingredient-req-" + d + "-" + e + "-" + z).closest("span").addClass("wppizza-ingredient-remove")
+                }), void 0 !== e.cssCheckDeselect && i.each(e.cssCheckDeselect, function(e, t) {
+                    i("#wppizza-ingredient-req-" + d + "-" + e + "-" + z).prop("checked", !1), i("#wppizza-ingredient-req-" + d + "-" + e + "-" + z).closest("span").removeClass("wppizza-ingredient-remove")
+                }), 1 == t.tb && l(t.tbstky, null, !1, !0, 0, !1), n.removeAttr("disabled", "disabled"), a.find(".wppizza-ingredients-disable-click").remove()
+            }, "json").error(function(i, e, t) {
+                alert("error : " + t), console.log(i.responseText)
+            })
+        }
+    }), i(document).on("click", ".wppizza-diy-to-cart, .wppizza-addasis", function(e) {
+        var n = i(this),
+            a = i(".wppizza-ingredients"),
+            p = i(".wppizza-add-ingredients-tbw"),
+            r = i("#TB_title"),
+            s = i("#wppizza-ingr-multitype").val(),
+            d = (i(".wppizza-ingredients-textarea"), i("#wppizza-ingr-form")),
+            o = n.attr("id").split("-").pop(-1);
+        if (!1 === h()) return !1;
+        if (1 == t.tbstky) {
+            var z = i("#wppizza-ingredients-sticky-" + o);
+            a = a.not("#wppizza-ingredients-sticky-" + o), z.css({
+                display: "none"
+            })
+        }
+        var l = i("#wppizza-ingredients-restrictions-" + o);
+        if (l.length > 0 && void 0 !== l) {
+            var c = l.val().split(":"),
+                g = c[0],
+                v = c[1],
+                u = c[2];
+            if (!1 === w("checkmin", g, v, u, s)) return !1
+        }
+        if (void 0 !== p && void 0 !== r && p.length > 0 && r.length > 0) {
+            var m = p.height() - r.height();
+            a.empty().css({
+                height: m
+            }).addClass("wppizza-ingredients-loading")
+        } else a.empty().addClass("wppizza-ingredients-loading");
+        void 0 !== wppizza.isCheckout && (i("html").css({
+            position: "relative"
+        }), i("body").prepend('<div id="wppizza-loading" style="opacity:0.8"></div>')), jQuery.post(wppizza.ajaxurl, {
+            action: "wppizza_ingredients_json",
+            vars: {
+                type: "diy-to-cart",
+                multiType: s,
+                data: d.serialize()
+            }
+        }, function(e) {
+            if (void 0 !== e.groupInvalid) return console.log(e.groupInvalid), a.fadeOut(500, function() {
+                i(this).empty().remove()
+            }), 1 == t.tbstky && z.fadeOut(500, function() {
+                i(this).empty().remove()
+            }), void(1 != t.tb && "function" != typeof tb_remove || tb_remove());
+            var n = i("#wppizza-" + e.blogId + "-" + e.catId + "-" + e.id + "-" + e.tier + "-" + e.size);
+            n.removeClass("wppizza-add-ingredients").addClass("wppizza-cart-refresh"), n.trigger("click"), n.removeClass("wppizza-cart-refresh").addClass("wppizza-add-ingredients"), a.fadeOut(500, function() {
+                i(this).empty().remove()
+            }), 1 == t.tbstky && z.fadeOut(500, function() {
+                i(this).empty().remove()
+            }), 1 != t.tb && "function" != typeof tb_remove || tb_remove()
+        }, "json").complete(function() {
+            void 0 === wppizza.isCheckout || (window.location.href = window.location.href)
+        }).error(function(i, e, t) {
+            alert("error : " + t), console.log(i.responseText), a.empty().remove()
+        })
+    }), i(document).on("click", ".wppizza-ingredients-edit", function(e) {
+        e.preventDefault();
+        var n = -1,
+            a = -1,
+            p = i(this),
+            r = p.closest("tr");
+        (p.hasClass("wppizza-ingredients-edit-pre") || p.hasClass("wppizza-ingredients-edit-post")) && (r = p.closest("tr").prev(".wppizza-item-row"));
+        var s = r.attr("id"),
+            d = s.split("-").pop(-1),
+            o = d.split("|")[0].split("."),
+            z = o[0],
+            w = o[1],
+            c = o[2],
+            g = o[3],
+            h = o[4],
+            v = o[5],
+            u = 1,
+            m = r.find(".wppizza-cart-mod");
+        if (m.length > 0 && (u = m.val()), p.hasClass("wppizza-ingredients-repurchase")) {
+            var f = s.split("-");
+            n = f = f[2], a = d
+        }
+        i(".wppizza-ingredients").length > 0 && i(".wppizza-ingredients").empty().remove(), i("#wppizza-addingredients-tb>div").append('<div id="wppizza-ingredients-' + c + '" class="wppizza-ingredients wppizza-ingredients-loading"></div>');
+        var x = b();
+        tb_show("" + t.tblbl, "#TB_inline?width=" + x.w + "&amp;height=" + x.h + "&amp;inlineId=wppizza-addingredients-tb", null), l(t.tbstky, x, !0, !1, 0, !1), jQuery.post(wppizza.ajaxurl, {
+            action: "wppizza_ingredients_json",
+            vars: {
+                type: "editingredients",
+                key: d,
+                blogId: z,
+                catId: w,
+                item: c,
+                tier: g,
+                size: h,
+                multi: v,
+                quantity: u,
+                repurchase_id: n,
+                repurchase_key: a
+            }
+        }, function(e) {
+            i("#TB_ajaxWindowTitle").prepend(e.title + " - "), void 0 !== e.restrictions_info && i(".wppizza-add-ingredients-tbttl").append(e.restrictions_info), i("#wppizza-ingredients-" + c).removeClass("wppizza-ingredients-loading"), i("#wppizza-ingredients-" + c).html(e.body), 1 == t.tbstky && i("#TB_title").after(e.head), l(t.tbstky, x, !1, !1, 0, !1), y()
+        }, "json").error(function(i, e, t) {
+            alert("error : " + t), console.log(i.responseText)
+        })
+    }), i(window).bind("orientationchange", function(e) {
+        0 !== i(".wppizza-add-ingredients-tbw").length && l(t.tbstky, null, !1, !0, 0, !0)
+    })
+});

@@ -1,0 +1,20 @@
+/************************************************************************************
+*	to edit/amend/change the declarations below:
+*
+*	[create a file called wppizza-tm-custom.css in your theme directory (into subdirectory wppizza/css) and overwrite
+*	specific declarations as neccessary]
+*	[however, if you must, you can also copy this whole file as is (i.e as wppizza-tm.css)
+*	to your theme (into subdirectory wppizza/css) - which will then be loaded instead - and edit as required]
+*
+************************************************************************************/
+
+/******************
+	[item not available]
+*******************/
+.main-navigation li ul.sub-menu{z-index:100}/*make sure menu dropdowns cover non available item divs**/
+.wppizza_tm_nawrap{/*position:relative;*/position:relative; overflow: hidden;}
+.wppizza_tm_na{z-index:98;opacity:0.9;position:absolute;top:0;right:0;bottom:0;left:0;background-color:#FFFFFF;padding:0;margin:0}
+.wppizza_tm_na_inner{position: absolute;z-index: 99;padding: 0;margin: 0 auto;overflow: hidden;background: transparent;height: 100%;}
+.wppizza_tm_na_inner>div{background-color: #EFEFEF;text-align: center;font-size: 90%;line-height: 20px;display: block;padding: 2px 30px;-webkit-transform: translateY(-20px) translateX(-60px) rotate(-30deg);-moz-transform: translateY(-20px) translateX(-60px) rotate(-30deg);-ms-transform: translateY(-20px) translateX(-60px) rotate(-30deg);-o-transform: translateY(-20px) translateX(-60px) rotate(-30deg);transform: translateY(-20px) translateX(-60px) rotate(-30deg);-webkit-transform-origin: top right;-moz-transform-origin: top right;-ms-transform-origin: top right;-o-transform-origin: top right;transform-origin: top right;}
+/* grid only */
+.wppizza-article-grid .wppizza_tm_na_inner>div{transform: translateY(-20px) translateX(-70px) rotate(-40deg);}
